@@ -1,36 +1,44 @@
 export type SystemId = 'skeletal'|'muscular'|'arterial'|'venous'|'nervous'|'digestive'|'respiratory'|'urinary'|'reproductive'|'lymphatic'|'endocrine'|'integumentary'|'connective'|'sensory'|'cardiac';
 export const SYSTEMS: {id:SystemId;name:string;color:string;description:string}[] = [
- {id:'skeletal',name:'Skeleton',color:'#e2d9ba',description:'Bones form the supporting framework of the body, protect organs, and provide attachment points for muscles. Their internal tissue also stores minerals and produces blood cells.'},
- {id:'muscular',name:'Muscles',color:'#a85b50',description:'Skeletal muscles generate movement by pulling on their attachments. Together with tendons, they move joints, stabilize posture, and produce heat.'},
- {id:'cardiac',name:'Heart',color:'#b96760',description:'The heart is a muscular pump with four chambers. Its valves direct blood forward through the pulmonary and systemic circuits.'},
- {id:'sensory',name:'Sensory organs',color:'#b0c8ce',description:'These structures contribute to special senses, including sight, hearing, and balance. Their specialized tissues detect stimuli and work with the nervous system to convey information.'},
- {id:'arterial',name:'Arteries',color:'#c05245',description:'The heart drives blood through the circulation. Arteries carry blood away from the heart to supply tissues or, in the pulmonary circuit, to the lungs.'},
- {id:'venous',name:'Veins',color:'#527c9f',description:'Veins return blood toward the heart. Superficial and deep networks collect blood from the tissues; the pulmonary veins bring oxygenated blood back from the lungs.'},
- {id:'nervous',name:'Nervous system',color:'#d8b565',description:'The brain, spinal cord, and peripheral nerves carry and process signals. They support sensation, movement, coordination, and automatic regulation of body functions.'},
- {id:'respiratory',name:'Respiratory',color:'#b98991',description:'The airways conduct air to the lungs, where oxygen and carbon dioxide move between air and blood. Breathing depends on pressure changes produced by respiratory muscles.'},
- {id:'digestive',name:'Digestive',color:'#b8916b',description:'The digestive tract breaks down food, absorbs nutrients and water, and moves waste onward. Accessory organs contribute bile and digestive enzymes.'},
- {id:'urinary',name:'Urinary',color:'#b47961',description:'The kidneys filter blood and regulate fluid, electrolyte, and acid–base balance. Urine travels through the ureters to the bladder and exits through the urethra.'},
- {id:'lymphatic',name:'Lymphatic',color:'#879f7c',description:'Lymphatic vessels return excess tissue fluid to the circulation. Lymph nodes and other lymphoid organs support immune surveillance and responses.'},
- {id:'endocrine',name:'Endocrine',color:'#c5a09a',description:'Endocrine organs release hormones into the blood to coordinate processes such as metabolism, growth, stress responses, and reproduction.'},
- {id:'reproductive',name:'Reproductive',color:'#bda098',description:'The male reproductive structures represented here contribute to sperm production, maturation, transport, and the production of sex hormones.'},
- {id:'integumentary',name:'Body surface',color:'#ba9b7d',description:'The body surface provides an outer anatomical reference. The integumentary system forms a protective barrier and contributes to sensation and temperature regulation.'},
- {id:'connective',name:'Connective tissue',color:'#aec3bb',description:'Cartilage, ligaments, and other connective tissues support, connect, and separate structures. Their roles include stabilizing joints and distributing mechanical loads.'},
+ {id:'skeletal',name:'Esqueleto',color:'#e2d9ba',description:'Os ossos formam a estrutura de sustentação do corpo, protegem os órgãos e servem de ponto de fixação para os músculos. Seu tecido interno também armazena minerais e produz células sanguíneas.'},
+ {id:'muscular',name:'Músculos',color:'#a85b50',description:'Os músculos esqueléticos geram movimento ao tracionar seus pontos de fixação. Junto com os tendões, movem as articulações, estabilizam a postura e produzem calor.'},
+ {id:'cardiac',name:'Coração',color:'#b96760',description:'O coração é uma bomba muscular com quatro câmaras. Suas valvas direcionam o sangue adiante pelas circulações pulmonar e sistêmica.'},
+ {id:'sensory',name:'Sentidos',color:'#b0c8ce',description:'Estas estruturas participam dos sentidos especiais, como visão, audição e equilíbrio. Seus tecidos especializados detectam estímulos e atuam com o sistema nervoso para transmitir informações.'},
+ {id:'arterial',name:'Artérias',color:'#c05245',description:'O coração impulsiona o sangue pela circulação. As artérias levam o sangue para longe do coração, irrigando os tecidos ou, na circulação pulmonar, os pulmões.'},
+ {id:'venous',name:'Veias',color:'#527c9f',description:'As veias levam o sangue de volta ao coração. Redes superficiais e profundas recolhem o sangue dos tecidos; as veias pulmonares trazem o sangue oxigenado dos pulmões.'},
+ {id:'nervous',name:'Sistema nervoso',color:'#d8b565',description:'O encéfalo, a medula espinal e os nervos periféricos conduzem e processam sinais. Eles sustentam a sensibilidade, o movimento, a coordenação e a regulação automática das funções do corpo.'},
+ {id:'respiratory',name:'Respiratório',color:'#b98991',description:'As vias aéreas conduzem o ar até os pulmões, onde oxigênio e gás carbônico são trocados entre o ar e o sangue. A respiração depende de variações de pressão produzidas pelos músculos respiratórios.'},
+ {id:'digestive',name:'Digestório',color:'#b8916b',description:'O trato digestório decompõe os alimentos, absorve nutrientes e água e conduz os resíduos adiante. Os órgãos anexos fornecem bile e enzimas digestivas.'},
+ {id:'urinary',name:'Urinário',color:'#b47961',description:'Os rins filtram o sangue e regulam o equilíbrio de líquidos, eletrólitos e ácido–base. A urina segue pelos ureteres até a bexiga e sai pela uretra.'},
+ {id:'lymphatic',name:'Linfático',color:'#879f7c',description:'Os vasos linfáticos devolvem à circulação o excesso de líquido dos tecidos. Os linfonodos e outros órgãos linfoides participam da vigilância e das respostas imunológicas.'},
+ {id:'endocrine',name:'Endócrino',color:'#c5a09a',description:'Os órgãos endócrinos liberam hormônios no sangue para coordenar processos como metabolismo, crescimento, resposta ao estresse e reprodução.'},
+ {id:'reproductive',name:'Reprodutor',color:'#bda098',description:'As estruturas reprodutoras masculinas representadas aqui participam da produção, maturação e transporte dos espermatozoides e da produção de hormônios sexuais.'},
+ {id:'integumentary',name:'Superfície corporal',color:'#ba9b7d',description:'A superfície do corpo serve de referência anatômica externa. O sistema tegumentar forma uma barreira protetora e contribui para a sensibilidade e a regulação da temperatura.'},
+ {id:'connective',name:'Tecido conjuntivo',color:'#aec3bb',description:'Cartilagens, ligamentos e outros tecidos conjuntivos sustentam, unem e separam estruturas. Entre suas funções estão estabilizar articulações e distribuir cargas mecânicas.'},
 ];
-export interface Part {id:string;name:string;conceptId:string;system:SystemId;chunk:number;positions:number;normals:number;indices:number;vertexCount:number;indexCount:number;bounds:[number[],number[]]}
-export interface Concept {id:string;name:string;elements:string[]}
+export interface Part {id:string;name:string;nameEn?:string;conceptId:string;system:SystemId;chunk:number;positions:number;normals:number;indices:number;vertexCount:number;indexCount:number;bounds:[number[],number[]]}
+export interface Concept {id:string;name:string;nameEn?:string;elements:string[]}
 export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number}
 export const DEFAULT_VISIBLE:SystemId[] = ['cardiac','sensory','skeletal','muscular','arterial','venous','nervous','respiratory','digestive','urinary','lymphatic','endocrine','reproductive','connective'];
 export const EXPLANATIONS:Record<string,string> = {
- 'heart':'A muscular pump in the chest. Its right side sends blood to the lungs; its left side sends blood through the systemic circulation.',
- 'liver':'A large organ beneath the right side of the diaphragm. It processes absorbed nutrients, produces bile, and synthesizes many proteins carried in the blood.',
- 'brain':'The central organ of the nervous system. Its interconnected regions support perception, movement, memory, language, and the regulation of bodily functions.',
- 'stomach':'A muscular chamber between the esophagus and small intestine. It stores and mixes food with acid and enzymes before releasing it into the duodenum.',
- 'spleen':'A lymphoid organ in the upper left abdomen. It filters blood, removes aging blood cells, and participates in immune responses.',
- 'pancreas':'An abdominal organ with digestive and endocrine roles. It supplies enzymes to the small intestine and releases hormones including insulin and glucagon.',
- 'urinary bladder':'A muscular reservoir in the pelvis that stores urine arriving from the kidneys through the ureters.',
- 'trachea':'The main airway connecting the larynx to the bronchi. Its cartilage supports keep the airway open during breathing.',
- 'diaphragm':'A broad muscle separating the chest and abdomen. When it contracts, it increases chest volume and helps draw air into the lungs.',
+ 'heart':'Uma bomba muscular no tórax. O lado direito envia o sangue aos pulmões; o lado esquerdo o envia pela circulação sistêmica.',
+ 'liver':'Um órgão grande abaixo do lado direito do diafragma. Processa os nutrientes absorvidos, produz bile e sintetiza muitas proteínas transportadas no sangue.',
+ 'brain':'O órgão central do sistema nervoso. Suas regiões interligadas sustentam a percepção, o movimento, a memória, a linguagem e a regulação das funções do corpo.',
+ 'stomach':'Uma câmara muscular entre o esôfago e o intestino delgado. Armazena o alimento e o mistura com ácido e enzimas antes de liberá-lo para o duodeno.',
+ 'spleen':'Um órgão linfoide na parte superior esquerda do abdome. Filtra o sangue, remove células sanguíneas envelhecidas e participa das respostas imunológicas.',
+ 'pancreas':'Um órgão abdominal com funções digestivas e endócrinas. Fornece enzimas ao intestino delgado e libera hormônios como insulina e glucagon.',
+ 'urinary bladder':'Um reservatório muscular na pelve que armazena a urina que chega dos rins pelos ureteres.',
+ 'trachea':'A principal via aérea entre a laringe e os brônquios. Seus anéis de cartilagem mantêm a via aberta durante a respiração.',
+ 'diaphragm':'Um músculo largo que separa o tórax do abdome. Ao se contrair, aumenta o volume do tórax e ajuda a puxar o ar para os pulmões.',
 };
-export function explanation(name:string,system:SystemId){return EXPLANATIONS[name.toLowerCase()] ?? SYSTEMS.find(s=>s.id===system)?.description ?? '';}
+/** Explanations are keyed by the original English source name. */
+export function explanation(nameEn:string,system:SystemId){return EXPLANATIONS[nameEn.toLowerCase()] ?? SYSTEMS.find(s=>s.id===system)?.description ?? '';}
+/** Merge the Portuguese name map into the atlas, keeping the English source name for search and lookups. */
+export function localizeAtlas(atlas:Atlas,names:Record<string,string>):Atlas{
+ const pt=(name:string)=>names[name]??name;
+ return {...atlas,parts:atlas.parts.map(p=>({...p,nameEn:p.name,name:pt(p.name)})),concepts:atlas.concepts.map(c=>({...c,nameEn:c.name,name:pt(c.name)}))};
+}
+/** Accent- and case-insensitive text used for search. */
+export function fold(text:string){return text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}

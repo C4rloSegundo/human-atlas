@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {createExplosionLayout} from '../app/explosion-layout.ts';
 import {PointerTap} from '../app/pointer-tap.ts';
 import {atlasTools} from '../app/agent-tools.ts';
+import {localizeAtlas} from '../app/anatomy.ts';
 
 for (const file of ['atlas.json']) {
   const atlas=JSON.parse(await readFile(new URL(`../public/models/${file}`,import.meta.url)));
@@ -29,7 +30,14 @@ for (const file of ['atlas.json']) {
   assert.throws(()=>inspect.execute({id:'nonexistent-structure'}));
   assert.equal(selected,previous);
   assert.throws(()=>find.execute({query:' '}));
+  // Portuguese names: every part and concept is translated, and search accepts PT (with or without accents) and EN.
+  const names=JSON.parse(await readFile(new URL('../public/models/names-pt.json',import.meta.url)));
+  const localized=localizeAtlas(atlas,names);
+  for(const item of [...localized.parts,...localized.concepts]){assert.ok(item.nameEn&&names[item.nameEn],`Missing Portuguese name: ${item.nameEn}`);assert.ok(!/\{S/.test(item.name),`Unresolved placeholder: ${item.name}`);}
+  const [findPt]=atlasTools(localized,()=>{});
+  for(const query of ['fêmur','femur','coração','heart','artéria coronária direita'])assert.ok(findPt.execute({query}).length>0,`No results for ${query}`);
   console.log(`${file}: packing at desktop/mobile aspect ratios and search/inspection contracts passed.`);
+  console.log(`${file}: ${Object.keys(names).length} Portuguese names and bilingual search passed.`);
 }
 const tap=new PointerTap();
 tap.down(1,10,10,5);assert.equal(tap.up(1,12,11),true);

@@ -1,4 +1,11 @@
-# Human Atlas
+# Human Atlas — Atlas Humano (pt-BR)
+
+> **Versão em português.** A interface e os 5.090 nomes anatômicos foram traduzidos para o português do Brasil, seguindo a Terminologia Anatômica (ex.: *Left femoral artery* → *Artéria femoral esquerda*). A busca aceita português, com ou sem acentos, e também os nomes originais em inglês.
+>
+> - Tradução dos nomes: `scripts/i18n/names-pt.tsv` (uma linha por modelo de nome; `{Sm}`/`{Sf}` fazem a concordância de esquerdo/esquerda e direito/direita).
+> - Para regenerar `public/models/names-pt.json` depois de editar o TSV: `node scripts/i18n/build-names-pt.mjs`.
+> - O app carrega `names-pt.json` junto com `atlas.json` e mantém o nome em inglês em `nameEn` para busca e para as explicações.
+
 
 An interactive 3D anatomy explorer built with React, Three.js, and shadcn/ui. Take the BodyParts3D adult male reference apart into **2,234 individually selectable meshes**, explore **15 anatomical systems**, and search **3,432 named concepts**.
 
