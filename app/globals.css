@@ -86,3 +86,7 @@ h1 .edition{font-family:inherit;font-weight:500;font-size:10px;letter-spacing:.0
 @media(max-width:767px){body:has(.detail-sheet) .view-controls{visibility:hidden}}
 
 @media(max-height:600px) and (orientation:landscape){body:has(.detail-sheet) .bottom-dock{left:12px;right:324px;width:auto;transform:none;max-width:none;margin:0}}
+
+/* Phone: the anatomy selector sits at the right of the meta line, above the camera bar. */
+@media(max-width:767px){.anatomy-choice{position:fixed;top:calc(max(18px,env(safe-area-inset-top)) + 52px);right:max(16px,env(safe-area-inset-right));margin:0}
+.anatomy-choice [data-slot=select-trigger]{min-height:34px;height:34px;font-size:12px;padding:4px 10px}}

@@ -1,4 +1,5 @@
-export type SystemId = 'skeletal'|'muscular'|'arterial'|'venous'|'nervous'|'digestive'|'respiratory'|'urinary'|'reproductive'|'lymphatic'|'endocrine'|'integumentary'|'connective'|'sensory'|'cardiac';
+export type SystemId = 'skeletal'|'muscular'|'arterial'|'venous'|'nervous'|'digestive'|'respiratory'|'urinary'|'reproductive'|'lymphatic'|'endocrine'|'integumentary'|'connective'|'sensory'|'cardiac'|'pregnancy';
+export type AnatomySex='male'|'female';
 export const SYSTEMS: {id:SystemId;name:string;color:string;description:string}[] = [
  {id:'skeletal',name:'Esqueleto',color:'#e2d9ba',description:'Os ossos formam a estrutura de sustentação do corpo, protegem os órgãos e servem de ponto de fixação para os músculos. Seu tecido interno também armazena minerais e produz células sanguíneas.'},
  {id:'muscular',name:'Músculos',color:'#a85b50',description:'Os músculos esqueléticos geram movimento ao tracionar seus pontos de fixação. Junto com os tendões, movem as articulações, estabilizam a postura e produzem calor.'},
@@ -14,15 +15,19 @@ export const SYSTEMS: {id:SystemId;name:string;color:string;description:string}[
  {id:'endocrine',name:'Endócrino',color:'#c5a09a',description:'Os órgãos endócrinos liberam hormônios no sangue para coordenar processos como metabolismo, crescimento, resposta ao estresse e reprodução.'},
  {id:'reproductive',name:'Reprodutor',color:'#bda098',description:'As estruturas reprodutoras masculinas representadas aqui participam da produção, maturação e transporte dos espermatozoides e da produção de hormônios sexuais.'},
  {id:'integumentary',name:'Superfície corporal',color:'#ba9b7d',description:'A superfície do corpo serve de referência anatômica externa. O sistema tegumentar forma uma barreira protetora e contribui para a sensibilidade e a regulação da temperatura.'},
+ {id:'pregnancy',name:'Referência de gestação',color:'#b88380',description:'A placenta e o cordão umbilical sustentam as trocas entre as circulações materna e fetal durante a gestação. Estas estruturas de referência ficam separadas da anatomia adulta padrão.'},
  {id:'connective',name:'Tecido conjuntivo',color:'#aec3bb',description:'Cartilagens, ligamentos e outros tecidos conjuntivos sustentam, unem e separam estruturas. Entre suas funções estão estabilizar articulações e distribuir cargas mecânicas.'},
 ];
 export interface Part {id:string;name:string;nameEn?:string;conceptId:string;system:SystemId;chunk:number;positions:number;normals:number;indices:number;vertexCount:number;indexCount:number;bounds:[number[],number[]]}
 export interface Concept {id:string;name:string;nameEn?:string;elements:string[]}
-export interface Atlas {version:string;sex?:'male';source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
+export interface Atlas {version:string;sex?:AnatomySex;source?:string;scope?:string;parts:Part[];concepts:Concept[];chunks:{url:string;bytes:number;gzip?:string;gzipBytes?:number}[];triangles:number}
 export type View = 'three-quarter'|'front'|'back'|'side';
 export interface SceneState {inspectorOpen?:boolean;explode:number;visible:SystemId[];selected:string[];isolate:boolean;view:View;rotate:boolean;reset:number}
 export const DEFAULT_VISIBLE:SystemId[] = ['cardiac','sensory','skeletal','muscular','arterial','venous','nervous','respiratory','digestive','urinary','lymphatic','endocrine','reproductive','connective'];
 export const EXPLANATIONS:Record<string,string> = {
+ 'uterus':'Um órgão muscular oco na pelve. Seu revestimento interno se modifica ao longo do ciclo menstrual e pode sustentar a implantação e o desenvolvimento durante a gestação.',
+ 'vagina':'Um canal muscular que liga o colo do útero ao exterior do corpo. Serve de passagem para o fluxo menstrual e faz parte do canal de parto.',
+ 'ovary':'Um órgão que contém ovócitos em desenvolvimento e produz hormônios como estrogênio e progesterona.',
  'heart':'Uma bomba muscular no tórax. O lado direito envia o sangue aos pulmões; o lado esquerdo o envia pela circulação sistêmica.',
  'liver':'Um órgão grande abaixo do lado direito do diafragma. Processa os nutrientes absorvidos, produz bile e sintetiza muitas proteínas transportadas no sangue.',
  'brain':'O órgão central do sistema nervoso. Suas regiões interligadas sustentam a percepção, o movimento, a memória, a linguagem e a regulação das funções do corpo.',
@@ -33,8 +38,11 @@ export const EXPLANATIONS:Record<string,string> = {
  'trachea':'A principal via aérea entre a laringe e os brônquios. Seus anéis de cartilagem mantêm a via aberta durante a respiração.',
  'diaphragm':'Um músculo largo que separa o tórax do abdome. Ao se contrair, aumenta o volume do tórax e ajuda a puxar o ar para os pulmões.',
 };
+const FEMALE_REPRODUCTIVE='As estruturas reprodutoras femininas incluem os ovários, as tubas uterinas, o útero, o colo do útero e a vagina. Juntas, elas participam do desenvolvimento dos ovócitos, da fecundação, da menstruação e da gestação.';
 /** Explanations are keyed by the original English source name. */
-export function explanation(nameEn:string,system:SystemId){return EXPLANATIONS[nameEn.toLowerCase()] ?? SYSTEMS.find(s=>s.id===system)?.description ?? '';}
+export function explanation(nameEn:string,system:SystemId,sex:AnatomySex='male'){return EXPLANATIONS[nameEn.toLowerCase()] ?? (sex==='female'&&system==='reproductive'?FEMALE_REPRODUCTIVE:SYSTEMS.find(s=>s.id===system)?.description) ?? '';}
+/** Each collection has its own default layers: the female surface stays on because its skeleton and muscles are partial. */
+export function defaultVisible(sex:AnatomySex):SystemId[]{return sex==='female'?[...DEFAULT_VISIBLE,'integumentary']:DEFAULT_VISIBLE;}
 /** Merge the Portuguese name map into the atlas, keeping the English source name for search and lookups. */
 export function localizeAtlas(atlas:Atlas,names:Record<string,string>):Atlas{
  const pt=(name:string)=>names[name]??name;

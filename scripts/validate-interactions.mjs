@@ -5,7 +5,7 @@ import {PointerTap} from '../app/pointer-tap.ts';
 import {atlasTools} from '../app/agent-tools.ts';
 import {localizeAtlas} from '../app/anatomy.ts';
 
-for (const file of ['atlas.json']) {
+for (const file of ['atlas.json','atlas-female.json']) {
   const atlas=JSON.parse(await readFile(new URL(`../public/models/${file}`,import.meta.url)));
   const groups=[atlas.parts,...[...new Set(atlas.parts.map(p=>p.system))].map(system=>atlas.parts.filter(p=>p.system===system))];
   for(const group of groups) for(const aspect of [.46,1,1.7]) {
@@ -23,7 +23,7 @@ for (const file of ['atlas.json']) {
   }
   let selected=null;
   const [find,inspect]=atlasTools(atlas,c=>{selected=c;});
-  const results=find.execute({query:'femur'});
+  const results=find.execute({query:file.includes('female')?'uterus':'femur'});
   assert.ok(results.length>0);
   inspect.execute({id:results[0].id});
   const previous=selected;
@@ -35,7 +35,8 @@ for (const file of ['atlas.json']) {
   const localized=localizeAtlas(atlas,names);
   for(const item of [...localized.parts,...localized.concepts]){assert.ok(item.nameEn&&names[item.nameEn],`Missing Portuguese name: ${item.nameEn}`);assert.ok(!/\{S/.test(item.name),`Unresolved placeholder: ${item.name}`);}
   const [findPt]=atlasTools(localized,()=>{});
-  for(const query of ['fêmur','femur','coração','heart','artéria coronária direita'])assert.ok(findPt.execute({query}).length>0,`No results for ${query}`);
+  const queries=file.includes('female')?['útero','utero','uterus','ovário','glândula mamária esquerda']:['fêmur','femur','coração','heart','artéria coronária direita'];
+  for(const query of queries)assert.ok(findPt.execute({query}).length>0,`No results for ${query}`);
   console.log(`${file}: packing at desktop/mobile aspect ratios and search/inspection contracts passed.`);
   console.log(`${file}: ${Object.keys(names).length} Portuguese names and bilingual search passed.`);
 }
