@@ -6,6 +6,8 @@
 > - Para regenerar `public/models/names-pt.json` depois de editar o TSV: `node scripts/i18n/build-names-pt.mjs`.
 > - O app carrega `names-pt.json` junto com `atlas.json` e mantém o nome em inglês em `nameEn` para busca e para as explicações.
 >
+> **Ocultar estruturas.** Selecione uma peça e toque em **Ocultar** (ou tecle `H`/`Delete`) para tirá-la da frente e ver ou clicar o que está embaixo. Um aviso acima da barra inferior mostra quantas peças estão ocultas, com **Desfazer** e **Mostrar todas**. As peças ocultas ficam salvas no navegador, separadas por modelo, até você usar **Redefinir**. Os arquivos do atlas não são alterados.
+>
 > **Anatomia feminina.** Este fork restaura o modelo feminino que existia nas primeiras versões do projeto (Human Reference Atlas / HuBMAP, *3D Reference Organ Set for Female v1.5*, CC BY 4.0): 888 malhas e 1.073 estruturas, escolhidas no seletor abaixo do título. A cobertura de esqueleto e músculos é parcial; a superfície do corpo começa visível e as 8 peças de referência de gestação ficam numa camada própria, oculta por padrão. Validação: `node scripts/validate-atlas.mjs atlas-female.json`.
 
 
